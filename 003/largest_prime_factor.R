@@ -1,26 +1,20 @@
 library(magrittr)
 
-reset_counter <- function(x) { counter <<- 0; x }
-increment_counter <- function() { counter <<- counter + 1 }
-print_counter <- function(x) { print(counter); x }
-
-get_largest_prime_factor <- function(x) x %>% reset_counter %>% all_factors %>% tail(., 1) %>% print_counter
+get_largest_prime_factor <- function(x) x %>% all_factors %>% tail(., 1) %>% print_counter
 
 find_next_factor <- function(x, after=1) {
   on.exit({ message(paste("Find next factor of", x, "after", after, ":", returnValue())) })
-
-  get_next_candidate_after <- function(k) {
-    increment_counter()
-    if (k == 1) return(2)
-    if (k == 2) return(3)
-    k + 2
-  }
-
   i <- after
   while (TRUE) {
     i <- get_next_candidate_after(i)
     if (identical(0, x %% i)) return(i)
   }
+}
+
+get_next_candidate_after <- function(k) {
+  if (k == 1) return(2)
+  if (k == 2) return(3)
+  k + 2
 }
 
 all_factors <- function(x, after = 1) {
