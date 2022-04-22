@@ -1,0 +1,4 @@
+.Rprofile
+*.o
+*.hi
+.byebug_history
