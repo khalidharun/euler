@@ -1,7 +1,5 @@
 source("003/largest_prime_factor.R")
-
-`%||%` <- function(x, y) if (is.null(x)) y else x
-`%|||%` <- function(x, y) if (length(x) == 0) y else x
+source("lib/utils.R")
 
 find_smallest_evenly_divisible <- function(factors) {
 
